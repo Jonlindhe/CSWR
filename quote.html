@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Your Instant Quote — Clean Sweep Waste Removal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0B0B0B; --charcoal:#161616; --panel:#1D1D1D; --orange:#FF6A13; --yellow:#FFD400;
+    --white:#FFFFFF; --gray:#B9B9B9; --gray-dim:#8A8A8A; --line:#2C2C2C;
+    --shadow:0 12px 30px rgba(0,0,0,.5);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter', sans-serif; background:var(--black); color:var(--white); line-height:1.6;}
+  h1,h2,h3{font-family:'Big Shoulders', sans-serif; font-weight:800; text-transform:uppercase; letter-spacing:-0.01em; line-height:1;}
+  .mono{font-family:'Space Mono', monospace;}
+  a{color:inherit;}
+  .wrap{max-width:1220px; margin:0 auto; padding:0 24px;}
+
+  /* PROGRESS BAR */
+  .progress-bar{position:sticky; top:65px; z-index:40; background:var(--charcoal); border-bottom:1px solid var(--line); overflow-x:auto;}
+  .progress-inner{display:flex; max-width:1220px; margin:0 auto; padding:0 24px;}
+  .progress-step{
+    flex:1; min-width:96px; display:flex; align-items:center; gap:8px; padding:12px 10px; cursor:pointer;
+    border-bottom:3px solid transparent; transition:border-color .2s ease; background:none; border-top:none; border-left:none; border-right:none;
+    font-family:'Space Mono',monospace; color:var(--gray-dim); font-size:.72rem; text-align:left;
+  }
+  .progress-step .p-num{
+    width:20px; height:20px; border-radius:50%; border:2px solid var(--gray-dim); flex-shrink:0;
+    display:flex; align-items:center; justify-content:center; font-size:.65rem; font-weight:700; color:var(--gray-dim); transition:all .2s ease;
+  }
+  .progress-step.active{border-color:var(--orange); color:var(--white);}
+  .progress-step.active .p-num{border-color:var(--orange); background:var(--orange); color:var(--black);}
+  .progress-step.done .p-num{border-color:var(--yellow); background:var(--yellow); color:var(--black);}
+  .progress-step.done .p-num::after{content:'✓';}
+  .progress-step.done .p-num span{display:none;}
+  .progress-step:hover{color:var(--white);}
+  @media(max-width:700px){ .progress-step span.p-label{display:none;} .progress-step{min-width:44px; justify-content:center;} }
+
+  /* MOBILE PRICE BAR */
+  .mobile-price-bar{
+    display:none; position:fixed; bottom:0; left:0; right:0; z-index:60; background:var(--orange); color:var(--black);
+    padding:14px 20px; align-items:center; justify-content:space-between; box-shadow:0 -8px 24px rgba(0,0,0,.4);
+    font-family:'Big Shoulders',sans-serif; font-weight:800; cursor:pointer; border:none;
+  }
+  .mobile-price-bar .mp-label{font-family:'Space Mono',monospace; font-size:.68rem; text-transform:uppercase; letter-spacing:.05em; font-weight:700;}
+  .mobile-price-bar .mp-range{font-size:1.3rem;}
+  .mobile-price-bar .mp-cta{font-size:.85rem; text-transform:uppercase; text-decoration:underline;}
+  @media(max-width:940px){
+    .mobile-price-bar{display:flex;}
+    .quote-layout{padding-bottom:110px;}
+  }
+
+  @keyframes pulseUpdate{
+    0%{ color:var(--white); }
+    30%{ color:var(--orange); }
+    100%{ color:var(--yellow); }
+  }
+  .estimate-range.pulse{ animation:pulseUpdate .5s ease; }
+
+  nav{position:sticky; top:0; z-index:50; background:var(--black); border-bottom:1px solid var(--line);}
+  .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:16px 24px; max-width:1220px; margin:0 auto;}
+  .logo{display:flex; align-items:center; gap:10px; font-size:1.05rem; font-weight:800;}
+  .logo-mark{width:36px; height:36px; flex-shrink:0;}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    font-family:'Big Shoulders', sans-serif; font-weight:800; font-size:1rem; text-transform:uppercase; letter-spacing:.02em;
+    padding:13px 24px; border:2px solid transparent; cursor:pointer; transition:transform .12s ease, filter .12s ease;
+    clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px);
+  }
+  .btn:hover{transform:translateY(-2px); filter:brightness(1.08);}
+  .btn-primary{background:var(--orange); color:var(--black);}
+  .btn-secondary{background:transparent; color:var(--white); border-color:var(--white);}
+  .btn-sm{padding:9px 18px; font-size:.85rem;}
+
+  header.page-hero{
+    padding:56px 24px 44px; text-align:center;
+    background:linear-gradient(180deg, rgba(11,11,11,.4), rgba(11,11,11,.92)), url('https://images.unsplash.com/photo-1709831917664-804b57448953?fm=jpg&q=60&w=1800&auto=format&fit=crop') center 30%/cover;
+    border-bottom:1px solid var(--line);
+  }
+  header.page-hero .eyebrow{
+    display:inline-flex; align-items:center; gap:8px; color:var(--orange); font-family:'Space Mono',monospace;
+    font-weight:700; font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; margin-bottom:16px;
+  }
+  header.page-hero h1{font-size:clamp(2rem,4.4vw,2.9rem); color:var(--white); max-width:640px; margin:0 auto 14px;}
+  header.page-hero p{max-width:560px; margin:0 auto; font-weight:500; color:var(--gray); font-family:'Inter';}
+  .guarantee-strip{
+    display:inline-flex; align-items:center; gap:8px; background:var(--yellow); color:var(--black); border:none;
+    padding:8px 18px; font-size:.8rem; font-weight:800; margin-top:18px; font-family:'Space Mono',monospace; text-transform:uppercase;
+  }
+
+  .quote-layout{display:grid; grid-template-columns:1.4fr 1fr; gap:26px; padding:48px 24px 100px; max-width:1220px; margin:0 auto; align-items:start;}
+  @media(max-width:940px){ .quote-layout{grid-template-columns:1fr;} }
+
+  .q-section{background:var(--panel); border:1px solid var(--line); padding:26px; margin-bottom:20px;}
+  .q-section h2{font-size:1.3rem; margin-bottom:4px; text-transform:none;}
+  .q-section .q-step{font-family:'Space Mono',monospace; color:var(--orange); font-size:.76rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; margin-bottom:6px; display:block;}
+  .q-section .q-hint{font-size:.86rem; color:var(--gray-dim); margin-bottom:16px;}
+
+  label.field-label{display:block; font-weight:700; font-size:.85rem; margin-bottom:6px; color:var(--gray);}
+  .field-row{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;}
+  @media(max-width:520px){ .field-row{grid-template-columns:1fr;} }
+  input[type=text], input[type=tel], input[type=email], input[type=date]{
+    width:100%; padding:12px 14px; border:1px solid var(--line); font-family:'Inter',sans-serif; font-size:.95rem;
+    background:var(--black); color:var(--white);
+  }
+  input[type=date]{ color-scheme:dark; }
+  input:focus{outline:none; border-color:var(--orange);}
+  input::placeholder{color:#5a5a5a;}
+  .required-flag{color:var(--orange); margin-left:2px;}
+  .form-error{color:var(--orange); font-size:.82rem; font-weight:700; margin-top:6px; display:none;}
+
+  .option-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px;}
+  @media(max-width:520px){ .option-grid{grid-template-columns:1fr;} }
+  .option-grid.single-col{grid-template-columns:1fr;}
+  .option-grid.two-col{grid-template-columns:1fr 1fr;}
+  @media(max-width:520px){ .option-grid.two-col{grid-template-columns:1fr;} }
+
+  .opt-card{
+    position:relative; border:1px solid var(--line); padding:13px 16px 13px 42px; cursor:pointer;
+    transition:border-color .15s ease, background .15s ease, transform .12s ease; background:var(--black); display:block;
+  }
+  .opt-card:hover{ transform:translateY(-1px); border-color:#555; }
+  .opt-card input{position:absolute; opacity:0; pointer-events:none;}
+  .opt-card .check{position:absolute; left:14px; top:15px; width:16px; height:16px; border:2px solid var(--gray-dim); background:transparent;}
+  .opt-card.radio .check{border-radius:50%;}
+  .opt-card input:checked ~ .check{background:var(--orange); border-color:var(--orange);}
+  .opt-card input:checked ~ .opt-title{color:var(--orange);}
+  .opt-card:has(input:checked){border-color:var(--orange); background:#1f1208;}
+  .opt-title{font-weight:700; font-size:.92rem; display:block; color:var(--white);}
+  .opt-desc{font-size:.78rem; color:var(--gray-dim); display:block; margin-top:2px;}
+  .opt-price{font-family:'Space Mono',monospace; font-size:.74rem; color:var(--yellow); font-weight:700; float:right;}
+
+  .mode-opt{padding:18px 20px 18px 46px;}
+  .mode-opt .opt-title{font-size:1rem;}
+  .mode-opt .check{top:20px;}
+  .mode-tagline{font-size:.76rem; font-family:'Space Mono',monospace; color:var(--orange); font-weight:700; text-transform:uppercase; letter-spacing:.04em;}
+
+  .drop-zone{border:2px dashed var(--line); padding:26px; text-align:center; cursor:pointer; background:var(--black); transition:border-color .15s ease;}
+  .drop-zone.drag{border-color:var(--orange);}
+  .drop-zone p{font-weight:700; font-size:.88rem;}
+  .drop-zone .sub{font-weight:400; font-size:.76rem; color:var(--gray-dim); margin-top:4px;}
+  #photoInput{display:none;}
+  .photo-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(84px,1fr)); gap:10px; margin-top:14px;}
+  .photo-thumb{position:relative; overflow:hidden; border:1px solid var(--line); aspect-ratio:1/1;}
+  .photo-thumb img{width:100%; height:100%; object-fit:cover; display:block;}
+  .photo-thumb button{
+    position:absolute; top:4px; right:4px; width:20px; height:20px; border:none;
+    background:var(--orange); color:var(--black); font-weight:700; cursor:pointer; font-size:.75rem; line-height:1;
+  }
+  .photo-count{font-size:.78rem; color:var(--yellow); font-weight:700; margin-top:10px;}
+
+  .sticky-col{position:sticky; top:120px;}
+  .estimate-panel{background:var(--panel); border:1px solid var(--orange); padding:26px;}
+  .estimate-panel .tag{font-family:'Space Mono',monospace; font-size:.72rem; color:var(--orange); font-weight:700; text-transform:uppercase; letter-spacing:.06em;}
+  .estimate-panel h2{color:var(--white); font-size:1.15rem; margin:6px 0 16px; text-transform:none;}
+  .estimate-range{font-family:'Big Shoulders',sans-serif; font-size:2.3rem; font-weight:800; color:var(--yellow); line-height:1;}
+  .estimate-range .unit{font-size:.85rem; color:var(--gray-dim); font-weight:400; font-family:'Inter'; text-transform:none;}
+  .estimate-note{font-size:.8rem; color:var(--gray); margin:14px 0 18px; padding:12px; background:var(--black); border-left:3px solid var(--orange);}
+  .estimate-breakdown{list-style:none; font-size:.83rem; margin-bottom:18px;}
+  .estimate-breakdown li{display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid var(--line); color:var(--gray);}
+  .estimate-breakdown li span:last-child{font-family:'Space Mono',monospace; color:var(--white);}
+
+  .confirm-panel{display:none; background:var(--yellow); color:var(--black); border:1px solid var(--line); padding:30px; text-align:center;}
+  .confirm-panel h2{font-size:1.3rem; margin-bottom:10px;}
+  .confirm-panel p{font-size:.93rem; margin-bottom:16px; font-family:'Inter';}
+  .confirm-panel .est{font-family:'Big Shoulders',sans-serif; font-size:1.9rem; margin-bottom:14px;}
+  .confirm-panel .btn-primary{background:var(--black); color:var(--yellow);}
+  .confirm-panel .btn-secondary{border-color:var(--black); color:var(--black);}
+  .status-badge{
+    display:inline-block; background:var(--black); color:var(--yellow); font-family:'Space Mono',monospace;
+    font-size:.7rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; padding:6px 14px; margin-bottom:14px;
+  }
+  .confirm-slot{
+    background:rgba(11,11,11,.1); border:1px dashed var(--black); padding:10px 14px; font-family:'Space Mono',monospace;
+    font-size:.82rem; font-weight:700; margin-top:-6px; margin-bottom:16px !important;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="index.html">
+      <svg class="logo-mark" viewBox="0 0 100 100">
+        <polygon points="14,0 100,0 100,86 86,100 0,100 0,14" fill="#FF6A13"/>
+        <line x1="30" y1="35" x2="58" y2="63" stroke="#fff" stroke-width="6"/>
+        <line x1="58" y1="63" x2="72" y2="77" stroke="#fff" stroke-width="5"/>
+        <line x1="58" y1="63" x2="64" y2="80" stroke="#fff" stroke-width="5"/>
+        <line x1="58" y1="66" x2="80" y2="66" stroke="#fff" stroke-width="5"/>
+      </svg>
+      <span>CLEAN SWEEP</span>
+    </a>
+    <a href="tel:+13125550134" class="btn btn-secondary btn-sm">(312) 555-0134</a>
+  </div>
+</nav>
+
+<div class="progress-bar">
+  <div class="progress-inner" id="progressInner">
+    <button type="button" class="progress-step" data-target="step1"><span class="p-num"><span>1</span></span><span class="p-label">Info</span></button>
+    <button type="button" class="progress-step" data-target="step2"><span class="p-num"><span>2</span></span><span class="p-label">Service</span></button>
+    <button type="button" class="progress-step" data-target="step3"><span class="p-num"><span>3</span></span><span class="p-label">Size</span></button>
+    <button type="button" class="progress-step" data-target="step4"><span class="p-num"><span>4</span></span><span class="p-label">Mode</span></button>
+    <button type="button" class="progress-step" data-target="step5"><span class="p-num"><span>5</span></span><span class="p-label">Extras</span></button>
+    <button type="button" class="progress-step" data-target="step6"><span class="p-num"><span>6</span></span><span class="p-label">Photos</span></button>
+    <button type="button" class="progress-step" data-target="step7"><span class="p-num"><span>7</span></span><span class="p-label">Book</span></button>
+  </div>
+</div>
+
+<header class="page-hero">
+  <span class="eyebrow">Takes About 3 Minutes</span>
+  <h1>Send Photos. Know The Price. Book Your Slot.</h1>
+  <p>Pricing is based mainly on how much space your items take up in our truck. Answer a few quick questions, add photos, pick a preferred time, and see your real price range instantly.</p>
+  <div class="guarantee-strip">Price Guarantee — Won't Go Up Unless Scope Changes</div>
+</header>
+
+<form class="quote-layout" id="quoteForm">
+  <div>
+
+    <div class="q-section" id="step1">
+      <span class="q-step">Step 1</span>
+      <h2>Your Info</h2>
+      <p class="q-hint">So we know who to follow up with.</p>
+      <div class="field-row">
+        <div><label class="field-label">Name<span class="required-flag">*</span></label><input type="text" id="fName" placeholder="Jane Smith" required></div>
+        <div><label class="field-label">Phone<span class="required-flag">*</span></label><input type="tel" id="fPhone" placeholder="(312) 555-0100" required></div>
+      </div>
+      <div class="field-row">
+        <div><label class="field-label">Email</label><input type="email" id="fEmail" placeholder="jane@email.com"></div>
+        <div><label class="field-label">Zip Code</label><input type="text" id="fZip" placeholder="60614"></div>
+      </div>
+      <p class="form-error" id="contactError">Please add your name and phone number.</p>
+    </div>
+
+    <div class="q-section" id="step2">
+      <span class="q-step">Step 2</span>
+      <h2>What Needs To Go?</h2>
+      <p class="q-hint">Pick the closest match — helps our crew prep, doesn't change your price.</p>
+      <div class="option-grid" id="serviceOptions">
+        <label class="opt-card radio"><input type="radio" name="service" value="garage" checked><span class="check"></span><span class="opt-title">Garage Cleanout</span><span class="opt-desc">Full declutter &amp; haul-away</span></label>
+        <label class="opt-card radio"><input type="radio" name="service" value="junk"><span class="check"></span><span class="opt-title">Junk &amp; Waste Removal</span><span class="opt-desc">Furniture, appliances, etc.</span></label>
+        <label class="opt-card radio"><input type="radio" name="service" value="estate"><span class="check"></span><span class="opt-title">Estate Cleanout</span><span class="opt-desc">Full-home clearing</span></label>
+        <label class="opt-card radio"><input type="radio" name="service" value="storage"><span class="check"></span><span class="opt-title">Storage Unit Cleanout</span><span class="opt-desc">Clear the whole unit</span></label>
+        <label class="opt-card radio"><input type="radio" name="service" value="basement"><span class="check"></span><span class="opt-title">Basement / Attic</span><span class="opt-desc">Hard-to-reach spaces</span></label>
+        <label class="opt-card radio"><input type="radio" name="service" value="yard"><span class="check"></span><span class="opt-title">Yard / Shed Cleanout</span><span class="opt-desc">Outdoor debris &amp; scrap</span></label>
+      </div>
+    </div>
+
+    <div class="q-section" id="step3">
+      <span class="q-step">Step 3</span>
+      <h2>How Much Stuff?</h2>
+      <p class="q-hint">This is what drives most of your price — pick what's closest.</p>
+      <div class="option-grid single-col" id="volumeOptions">
+        <label class="opt-card radio"><input type="radio" name="volume" value="single" data-low="75" data-high="95" checked><span class="check"></span><span class="opt-price">From $75</span><span class="opt-title">Single Item</span><span class="opt-desc">Mattress, appliance, or sofa</span></label>
+        <label class="opt-card radio"><input type="radio" name="volume" value="small" data-low="99" data-high="149"><span class="check"></span><span class="opt-price">$99–$149</span><span class="opt-title">Small Load</span><span class="opt-desc">Several items or a small closet</span></label>
+        <label class="opt-card radio"><input type="radio" name="volume" value="quarter" data-low="175" data-high="249"><span class="check"></span><span class="opt-price">$175–$249</span><span class="opt-title">Quarter Truck</span><span class="opt-desc">Small room or light garage cleanup</span></label>
+        <label class="opt-card radio"><input type="radio" name="volume" value="half" data-low="299" data-high="399"><span class="check"></span><span class="opt-price">$299–$399</span><span class="opt-title">Half Truck</span><span class="opt-desc">Apartment or larger garage cleanup</span></label>
+        <label class="opt-card radio"><input type="radio" name="volume" value="full" data-low="449" data-high="599"><span class="check"></span><span class="opt-price">$449–$599</span><span class="opt-title">Full Truck</span><span class="opt-desc">Large cleanout, multiple rooms</span></label>
+      </div>
+    </div>
+
+    <div class="q-section" id="step4">
+      <span class="q-step">Step 4</span>
+      <h2>Curbside Or Full-Service?</h2>
+      <p class="q-hint">Curbside costs less — you place items outside for us.</p>
+      <div class="option-grid two-col" id="modeOptions">
+        <label class="opt-card radio mode-opt"><input type="radio" name="mode" value="curbside" data-mult="0.8"><span class="check"></span><span class="mode-tagline">Lower Cost</span><span class="opt-title">Curbside Pickup</span><span class="opt-desc">Items placed outside, fixed price from photos</span></label>
+        <label class="opt-card radio mode-opt"><input type="radio" name="mode" value="fullservice" data-mult="1" checked><span class="check"></span><span class="mode-tagline">Most Popular</span><span class="opt-title">Full-Service Removal</span><span class="opt-desc">We remove it from inside, sweep-up included</span></label>
+      </div>
+    </div>
+
+    <div class="q-section" id="step5">
+      <span class="q-step">Step 5</span>
+      <h2>Anything Special?</h2>
+      <p class="q-hint">These are flagged for review — everyday junk, furniture, and appliances are already included.</p>
+      <div class="option-grid" id="specialOptions">
+        <label class="opt-card"><input type="checkbox" value="debris" data-flat="50"><span class="check"></span><span class="opt-title">Concrete / Soil / Debris</span><span class="opt-desc">Construction materials</span></label>
+        <label class="opt-card"><input type="checkbox" value="refrigerant" data-flat="25"><span class="check"></span><span class="opt-title">Fridge / AC / Freezer</span><span class="opt-desc">Contains refrigerant</span></label>
+        <label class="opt-card"><input type="checkbox" value="tires" data-flat="15"><span class="check"></span><span class="opt-title">Tires</span><span class="opt-desc">Per set, special disposal</span></label>
+        <label class="opt-card"><input type="checkbox" value="hazard" data-flat="35"><span class="check"></span><span class="opt-title">Paint / Hazardous</span><span class="opt-desc">Requires special handling</span></label>
+        <label class="opt-card"><input type="checkbox" value="heavy" data-flat="75"><span class="check"></span><span class="opt-title">Extremely Heavy Item</span><span class="opt-desc">Safe, piano, hot tub, etc.</span></label>
+        <label class="opt-card"><input type="checkbox" value="access" data-flat="40"><span class="check"></span><span class="opt-title">Difficult Access</span><span class="opt-desc">Stairs or long carry to truck</span></label>
+      </div>
+    </div>
+
+    <div class="q-section" id="step6">
+      <span class="q-step">Step 6</span>
+      <h2>Add Photos</h2>
+      <p class="q-hint">This is how we lock in your price — clear photos mean no surprises on arrival.</p>
+      <div class="drop-zone" id="dropZone"><p>Click to upload, or drag photos here</p><p class="sub">JPG or PNG — photos stay on this device until you submit</p></div>
+      <input type="file" id="photoInput" accept="image/*" multiple>
+      <div class="photo-grid" id="photoGrid"></div>
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <p class="photo-count" id="photoCount"></p>
+        <button type="button" id="clearPhotosBtn" style="display:none; background:none; border:none; color:var(--gray-dim); font-family:'Space Mono',monospace; font-size:.74rem; text-decoration:underline; cursor:pointer;">Clear all</button>
+      </div>
+    </div>
+
+    <div class="q-section" id="step7">
+      <span class="q-step">Step 7</span>
+      <h2>Pick A Preferred Date &amp; Time</h2>
+      <p class="q-hint">This reserves your slot — it's confirmed once we've reviewed your photos and locked in the final price.</p>
+      <div class="field-row" style="margin-bottom:16px;">
+        <div>
+          <label class="field-label">Preferred Date<span class="required-flag">*</span></label>
+          <input type="date" id="fDate" required>
+        </div>
+      </div>
+      <label class="field-label" style="margin-bottom:10px; display:block;">Preferred Time Window</label>
+      <div class="option-grid two-col" id="timeOptions">
+        <label class="opt-card radio"><input type="radio" name="timewindow" value="morning" checked><span class="check"></span><span class="opt-title">Morning</span><span class="opt-desc">8am – 11am</span></label>
+        <label class="opt-card radio"><input type="radio" name="timewindow" value="midday"><span class="check"></span><span class="opt-title">Midday</span><span class="opt-desc">11am – 2pm</span></label>
+        <label class="opt-card radio"><input type="radio" name="timewindow" value="afternoon"><span class="check"></span><span class="opt-title">Afternoon</span><span class="opt-desc">2pm – 5pm</span></label>
+        <label class="opt-card radio"><input type="radio" name="timewindow" value="flexible"><span class="check"></span><span class="opt-title">Flexible</span><span class="opt-desc">Any time that day</span></label>
+      </div>
+      <p class="form-error" id="dateError">Please pick a preferred date.</p>
+    </div>
+
+  </div>
+
+  <div>
+    <div class="sticky-col" id="stickyCol">
+      <div class="estimate-panel" id="estimatePanel">
+        <span class="tag">Instant Estimate</span>
+        <h2>Your Price Range</h2>
+        <div class="estimate-range" id="estimateRange">$—</div>
+        <div class="estimate-note">Automatic estimate from your selections — <strong>confirmed once we review your photos</strong>. Price won't increase unless items differ from what's shown.</div>
+        <ul class="estimate-breakdown" id="estimateBreakdown"></ul>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Request Quote &amp; Book This Slot</button>
+      </div>
+      <div class="confirm-panel" id="confirmPanel">
+        <span class="status-badge">Pending Quote Approval</span>
+        <h2>Booking Requested!</h2>
+        <div class="est" id="confirmRange">$—</div>
+        <p id="confirmSummary">Here's a summary of what you selected.</p>
+        <p id="confirmSlot" class="confirm-slot"></p>
+        <a href="tel:+13125550134" class="btn btn-primary" style="width:100%; margin-bottom:10px;">Call (312) 555-0134</a>
+        <a href="#" id="emailSummaryLink" class="btn btn-secondary" style="width:100%;">Email Us This Summary</a>
+      </div>
+    </div>
+  </div>
+</form>
+
+<script>
+(function(){
+  var form = document.getElementById('quoteForm');
+  var estimatePanel = document.getElementById('estimatePanel');
+  var confirmPanel = document.getElementById('confirmPanel');
+  var rangeEl = document.getElementById('estimateRange');
+  var breakdownEl = document.getElementById('estimateBreakdown');
+  var photos = [];
+
+  function currentService(){ var el = document.querySelector('input[name=service]:checked'); return { label: el.closest('.opt-card').querySelector('.opt-title').textContent }; }
+  function currentVolume(){ var el = document.querySelector('input[name=volume]:checked'); return { label: el.closest('.opt-card').querySelector('.opt-title').textContent, low: parseFloat(el.dataset.low), high: parseFloat(el.dataset.high) }; }
+  function currentMode(){ var el = document.querySelector('input[name=mode]:checked'); return { label: el.closest('.opt-card').querySelector('.opt-title').textContent, mult: parseFloat(el.dataset.mult) }; }
+  function currentSpecials(){
+    var checked = document.querySelectorAll('#specialOptions input:checked');
+    var list = []; var total = 0;
+    checked.forEach(function(el){ list.push({ label: el.closest('.opt-card').querySelector('.opt-title').textContent, flat: parseFloat(el.dataset.flat) }); total += parseFloat(el.dataset.flat); });
+    return { list: list, total: total };
+  }
+  function calcEstimate(){
+    var service = currentService(); var volume = currentVolume(); var mode = currentMode(); var specials = currentSpecials();
+    var low = Math.round((volume.low * mode.mult + specials.total) / 5) * 5;
+    var high = Math.round((volume.high * mode.mult + specials.total) / 5) * 5;
+    return { low: low, high: high, service: service, volume: volume, mode: mode, specials: specials };
+  }
+  function render(){
+    var est = calcEstimate();
+    rangeEl.innerHTML = '$' + est.low + '–$' + est.high + '<div class="unit">estimated range</div>';
+    rangeEl.classList.remove('pulse');
+    void rangeEl.offsetWidth;
+    rangeEl.classList.add('pulse');
+
+    var mobileRangeEl = document.getElementById('mobileRange');
+    if(mobileRangeEl){ mobileRangeEl.textContent = '$' + est.low + '–$' + est.high; }
+
+    var rows = [];
+    rows.push('<li><span>' + est.service.label + '</span><span>—</span></li>');
+    rows.push('<li><span>' + est.volume.label + '</span><span>$' + est.volume.low + '–$' + est.volume.high + '</span></li>');
+    rows.push('<li><span>' + est.mode.label + '</span><span>×' + est.mode.mult + '</span></li>');
+    est.specials.list.forEach(function(s){ rows.push('<li><span>' + s.label + '</span><span>+$' + s.flat + '</span></li>'); });
+    if(photos.length){ rows.push('<li><span>Photos attached</span><span>' + photos.length + '</span></li>'); }
+    breakdownEl.innerHTML = rows.join('');
+    return est;
+  }
+  form.addEventListener('change', render);
+  render();
+
+  var dropZone = document.getElementById('dropZone');
+  var photoInput = document.getElementById('photoInput');
+  var photoGrid = document.getElementById('photoGrid');
+  var photoCount = document.getElementById('photoCount');
+  dropZone.addEventListener('click', function(){ photoInput.click(); });
+  dropZone.addEventListener('dragover', function(e){ e.preventDefault(); dropZone.classList.add('drag'); });
+  dropZone.addEventListener('dragleave', function(){ dropZone.classList.remove('drag'); });
+  dropZone.addEventListener('drop', function(e){ e.preventDefault(); dropZone.classList.remove('drag'); handleFiles(e.dataTransfer.files); });
+  photoInput.addEventListener('change', function(e){ handleFiles(e.target.files); });
+  function handleFiles(fileList){
+    Array.from(fileList).forEach(function(file){
+      if(!file.type.startsWith('image/')) return;
+      var reader = new FileReader();
+      reader.onload = function(e){
+        var id = 'p' + Date.now() + Math.random().toString(36).slice(2);
+        photos.push({ id: id, name: file.name, dataUrl: e.target.result });
+        renderPhotos(); render();
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+  function renderPhotos(){
+    photoGrid.innerHTML = '';
+    photos.forEach(function(p){
+      var div = document.createElement('div');
+      div.className = 'photo-thumb';
+      div.innerHTML = '<img src="' + p.dataUrl + '" alt="' + p.name + '"><button type="button" aria-label="Remove photo">×</button>';
+      div.querySelector('button').addEventListener('click', function(){ photos = photos.filter(function(x){ return x.id !== p.id; }); renderPhotos(); render(); });
+      photoGrid.appendChild(div);
+    });
+    photoCount.textContent = photos.length ? photos.length + ' photo' + (photos.length > 1 ? 's' : '') + ' added' : '';
+    var clearBtn = document.getElementById('clearPhotosBtn');
+    if(clearBtn){ clearBtn.style.display = photos.length ? 'inline' : 'none'; }
+  }
+  var clearPhotosBtn = document.getElementById('clearPhotosBtn');
+  if(clearPhotosBtn){
+    clearPhotosBtn.addEventListener('click', function(){ photos = []; renderPhotos(); render(); });
+  }
+
+  /* set min selectable date to tomorrow */
+  var dateInput = document.getElementById('fDate');
+  if(dateInput){
+    var tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    dateInput.min = tomorrow.toISOString().split('T')[0];
+  }
+
+  function currentTimeWindow(){
+    var el = document.querySelector('input[name=timewindow]:checked');
+    return { label: el.closest('.opt-card').querySelector('.opt-title').textContent, desc: el.closest('.opt-card').querySelector('.opt-desc').textContent };
+  }
+
+  function formatDate(dstr){
+    if(!dstr) return '';
+    var d = new Date(dstr + 'T00:00:00');
+    return d.toLocaleDateString('en-US', { weekday:'long', month:'long', day:'numeric' });
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('fName').value.trim();
+    var phone = document.getElementById('fPhone').value.trim();
+    var errorEl = document.getElementById('contactError');
+    if(!name || !phone){ errorEl.style.display = 'block'; document.getElementById('fName').scrollIntoView({behavior:'smooth', block:'center'}); return; }
+    errorEl.style.display = 'none';
+
+    var dateVal = document.getElementById('fDate').value;
+    var dateErrorEl = document.getElementById('dateError');
+    if(!dateVal){ dateErrorEl.style.display = 'block'; document.getElementById('fDate').scrollIntoView({behavior:'smooth', block:'center'}); return; }
+    dateErrorEl.style.display = 'none';
+
+    var est = calcEstimate();
+    var timeWindow = currentTimeWindow();
+    var email = document.getElementById('fEmail').value.trim();
+    var zip = document.getElementById('fZip').value.trim();
+    var prettyDate = formatDate(dateVal);
+    var summaryLines = [
+      'New quote + booking request — Clean Sweep', 'Name: ' + name, 'Phone: ' + phone, 'Email: ' + (email || '—'), 'Zip: ' + (zip || '—'),
+      'Service: ' + est.service.label, 'Load size: ' + est.volume.label, 'Service mode: ' + est.mode.label,
+      'Special items: ' + (est.specials.list.map(function(s){return s.label;}).join(', ') || 'none'),
+      'Estimated range: $' + est.low + '–$' + est.high,
+      'Preferred date: ' + prettyDate, 'Preferred time: ' + timeWindow.label + ' (' + timeWindow.desc + ')',
+      'Status: PENDING QUOTE APPROVAL — final price and slot confirmed after photo review',
+      'Photos: ' + photos.length + ' attached on device (not emailed automatically — attach manually or mention on call)'
+    ];
+    var summaryText = summaryLines.join('\n');
+    document.getElementById('confirmRange').textContent = '$' + est.low + '–$' + est.high;
+    document.getElementById('confirmSummary').textContent =
+      'Thanks, ' + name.split(' ')[0] + '! Here\'s your estimate for ' + est.service.label.toLowerCase() +
+      ' (' + est.volume.label.toLowerCase() + ', ' + est.mode.label.toLowerCase() + '). We\'ll confirm your final price and lock in this slot within one business day — price won\'t increase unless the scope changes.';
+    document.getElementById('confirmSlot').textContent = 'Requested slot: ' + prettyDate + ' — ' + timeWindow.label + ' (' + timeWindow.desc + ')';
+    var mailLink = document.getElementById('emailSummaryLink');
+    mailLink.href = 'mailto:hello@cleansweepchicago.com?subject=' + encodeURIComponent('Quote + Booking Request from ' + name) + '&body=' + encodeURIComponent(summaryText);
+    estimatePanel.style.display = 'none';
+    confirmPanel.style.display = 'block';
+    confirmPanel.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+
+  /* progress bar: click to jump, scrollspy to highlight current step */
+  var progressSteps = document.querySelectorAll('.progress-step');
+  progressSteps.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var target = document.getElementById(btn.dataset.target);
+      if(target){ target.scrollIntoView({behavior:'smooth', block:'start'}); }
+    });
+  });
+
+  var sections = Array.from(document.querySelectorAll('.q-section[id^="step"]'));
+  var order = sections.map(function(s){ return s.id; });
+
+  var observer = new IntersectionObserver(function(entries){
+    var visible = entries.filter(function(e){ return e.isIntersecting; })
+      .sort(function(a,b){ return b.intersectionRatio - a.intersectionRatio; });
+    if(!visible.length) return;
+    var activeId = visible[0].target.id;
+    var activeIndex = order.indexOf(activeId);
+    progressSteps.forEach(function(btn){
+      var idx = order.indexOf(btn.dataset.target);
+      btn.classList.remove('active','done');
+      if(idx === activeIndex) btn.classList.add('active');
+      else if(idx < activeIndex) btn.classList.add('done');
+    });
+  }, { rootMargin: '-140px 0px -60% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] });
+
+  sections.forEach(function(s){ observer.observe(s); });
+
+  /* mobile price bar: tap to jump to the full estimate panel */
+  var mobileBar = document.getElementById('mobilePriceBar');
+  if(mobileBar){
+    mobileBar.addEventListener('click', function(){
+      estimatePanel.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  }
+})();
+</script>
+
+<button type="button" class="mobile-price-bar" id="mobilePriceBar">
+  <span><span class="mp-label">Your Estimate</span><br><span class="mp-range" id="mobileRange">$—</span></span>
+  <span class="mp-cta">View Details ↓</span>
+</button>
+
+</body>
+</html>

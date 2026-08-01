@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clean Sweep Waste Removal — Garage & Home Cleanouts in Chicago</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders:wght@600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#0B0B0B;
+    --charcoal:#161616;
+    --panel:#1D1D1D;
+    --orange:#FF6A13;
+    --yellow:#FFD400;
+    --white:#FFFFFF;
+    --gray:#B9B9B9;
+    --gray-dim:#8A8A8A;
+    --line:#2C2C2C;
+    --eco:#7FB88F;
+    --shadow:0 12px 30px rgba(0,0,0,.5);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    background:var(--black);
+    color:var(--white);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Big Shoulders', sans-serif;
+    font-weight:800;
+    letter-spacing:-0.01em;
+    text-transform:uppercase;
+    line-height:0.98;
+  }
+  .mono{font-family:'Space Mono', monospace;}
+  a{color:inherit; text-decoration:none;}
+  img,svg{display:block; max-width:100%;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+
+  /* NAV */
+  nav{position:sticky; top:0; z-index:50; background:var(--black); border-bottom:1px solid var(--line);}
+  .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:16px 24px; max-width:1180px; margin:0 auto;}
+  .logo{display:flex; align-items:center; gap:12px; font-size:1.1rem; font-weight:800;}
+  .logo-mark{width:42px; height:42px; flex-shrink:0;}
+  .nav-links{display:flex; gap:30px; align-items:center; font-weight:600; font-size:.92rem; text-transform:uppercase; letter-spacing:.03em;}
+  .nav-links a{padding:6px 2px; border-bottom:2px solid transparent; transition:border-color .15s, color .15s;}
+  .nav-links a:hover{border-color:var(--orange); color:var(--orange);}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    font-family:'Big Shoulders', sans-serif; font-weight:800; font-size:1rem; text-transform:uppercase; letter-spacing:.02em;
+    padding:14px 28px; border:2px solid transparent; cursor:pointer; transition:transform .12s ease, filter .12s ease;
+    white-space:nowrap; clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);
+  }
+  .btn:hover{transform:translateY(-2px); filter:brightness(1.08);}
+  .btn-primary{background:var(--yellow); color:var(--black);}
+  .btn-secondary{background:transparent; color:var(--white); border-color:var(--white);}
+  .btn-outline-orange{background:transparent; color:var(--orange); border-color:var(--orange);}
+  .btn-sm{padding:10px 20px; font-size:.88rem;}
+  @media(max-width:860px){ .nav-links{display:none;} }
+
+  /* HERO */
+  .hero{
+    position:relative; border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg, rgba(11,11,11,.55) 0%, rgba(11,11,11,.88) 75%, var(--black) 100%),
+      url('https://images.unsplash.com/photo-1709831917664-804b57448953?fm=jpg&q=70&w=2000&auto=format&fit=crop') center 30%/cover no-repeat;
+  }
+  .hero-grid{
+    padding:90px 24px 60px; max-width:1180px; margin:0 auto; position:relative; z-index:2;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px; color:var(--orange);
+    font-family:'Space Mono',monospace; font-weight:700; font-size:.82rem; letter-spacing:.08em; text-transform:uppercase;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{content:''; width:26px; height:2px; background:var(--orange); display:inline-block;}
+  .hero h1{font-size:clamp(2.6rem, 7vw, 5.2rem); color:var(--white); max-width:900px;}
+  .hero h1 .accent{color:var(--yellow);}
+  .hero p.sub{font-size:1.1rem; color:var(--gray); max-width:560px; margin:22px 0 30px; font-weight:500;}
+  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap;}
+  .hero-note{margin-top:20px; font-size:.9rem; color:var(--gray-dim); font-weight:600;}
+  .placeholder-flag{color:var(--orange); font-family:'Space Mono',monospace;}
+
+  /* TRUST BAR */
+  .trust-bar{
+    background:var(--yellow); border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .trust-grid{display:grid; grid-template-columns:repeat(4,1fr); max-width:1180px; margin:0 auto;}
+  .trust-stat{padding:30px 20px; text-align:center; border-right:1px solid rgba(0,0,0,.15);}
+  .trust-stat:last-child{border-right:none;}
+  .trust-num{display:block; font-family:'Big Shoulders',sans-serif; font-size:2.4rem; font-weight:800; color:var(--black); line-height:1;}
+  .trust-label{display:block; font-size:.78rem; font-weight:700; color:#3a2e00; text-transform:uppercase; letter-spacing:.05em; margin-top:4px;}
+  @media(max-width:700px){ .trust-grid{grid-template-columns:1fr 1fr;} .trust-stat{border-bottom:1px solid rgba(0,0,0,.15);} }
+  .trust-sample-note{text-align:center; font-size:.72rem; color:#5c4a12; padding:8px 0; background:var(--yellow); font-family:'Space Mono',monospace;}
+
+  /* SECTION LABELS */
+  .section{padding:96px 0;}
+  .section-head{max-width:680px; margin-bottom:52px;}
+  .section-head .tag{
+    font-family:'Space Mono',monospace; font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em;
+    color:var(--orange); margin-bottom:12px; display:flex; align-items:center; gap:10px;
+  }
+  .section-head .tag::before{content:''; width:26px; height:2px; background:var(--orange); display:inline-block;}
+  .section-head h2{font-size:clamp(2rem,4.2vw,3.2rem); color:var(--white);}
+  .on-light .section-head h2{color:var(--black);}
+
+  /* SERVICES */
+  .services{background:var(--black);}
+  .services-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--line); border:1px solid var(--line);}
+  @media(max-width:900px){.services-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:600px){.services-grid{grid-template-columns:1fr;}}
+  .s-card{background:var(--panel); display:flex; flex-direction:column; min-height:280px;}
+  .s-card .photo{width:100%; aspect-ratio:16/10; background-size:cover; background-position:center; position:relative;}
+  .s-card .photo::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(11,11,11,0) 60%, rgba(11,11,11,.5) 100%);}
+  .s-card .body{padding:24px 26px 30px; display:flex; flex-direction:column; flex:1;}
+  .s-card .icon{
+    width:44px; height:44px; background:var(--orange); display:flex; align-items:center; justify-content:center; margin-top:-46px; margin-bottom:16px; position:relative; z-index:2;
+    clip-path:polygon(7px 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%,0 7px);
+  }
+  .s-card h3{font-size:1.4rem; color:var(--white); margin-bottom:10px; text-transform:none;}
+  .s-card p{font-size:.92rem; color:var(--gray); flex:1;}
+  .s-card .price-row{display:flex; align-items:center; justify-content:space-between; margin-top:22px; padding-top:18px; border-top:1px solid var(--line);}
+  .s-card .price{font-family:'Big Shoulders',sans-serif; font-weight:800; font-size:1.15rem; color:var(--yellow);}
+  .s-card .price span{font-size:.7rem; color:var(--gray-dim); font-family:'Space Mono',monospace; text-transform:uppercase; display:block; font-weight:400;}
+
+  /* PRICING SECTION */
+  .pricing-section{background:var(--charcoal); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .pricing-intro{display:grid; grid-template-columns:1fr 1fr; gap:44px; align-items:center; margin-bottom:60px;}
+  @media(max-width:900px){.pricing-intro{grid-template-columns:1fr;}}
+  .diff-box{background:var(--black); border:1px solid var(--line); border-left:4px solid var(--orange); padding:28px 30px;}
+  .diff-box .them{color:var(--gray-dim); font-size:.85rem; text-decoration:line-through; margin-bottom:10px;}
+  .diff-box .us{color:var(--yellow); font-family:'Big Shoulders',sans-serif; font-size:1.7rem; font-weight:800; line-height:1.2; text-transform:none;}
+
+  .steps-row{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-bottom:60px; position:relative;}
+  @media(max-width:820px){.steps-row{grid-template-columns:1fr 1fr;}}
+  @media(max-width:480px){.steps-row{grid-template-columns:1fr;}}
+  .step-card{background:var(--black); padding:28px 24px; position:relative;}
+  .step-card .step-num{
+    font-family:'Big Shoulders',sans-serif; font-size:1.1rem; font-weight:800; color:var(--black); background:var(--yellow);
+    width:38px; height:38px; display:flex; align-items:center; justify-content:center; margin-bottom:16px;
+  }
+  .step-card h3{font-size:1.05rem; margin-bottom:6px; color:var(--white); text-transform:none;}
+  .step-card p{font-size:.86rem; color:var(--gray);}
+
+  .pricing-table{width:100%; border-collapse:collapse; margin-bottom:20px; border:1px solid var(--line);}
+  .pricing-table thead th{
+    text-align:left; font-family:'Space Mono',monospace; font-size:.75rem; text-transform:uppercase;
+    letter-spacing:.05em; color:var(--gray-dim); padding:14px 20px; background:var(--black); border-bottom:1px solid var(--line);
+  }
+  .pricing-table tbody tr{background:var(--black); border-bottom:1px solid var(--line);}
+  .pricing-table tbody tr:hover{background:#141414;}
+  .pricing-table tbody td{padding:18px 20px;}
+  .pricing-table .band-name{font-family:'Big Shoulders',sans-serif; font-weight:700; font-size:1.15rem; color:var(--white); text-transform:uppercase;}
+  .pricing-table .band-example{font-size:.85rem; color:var(--gray);}
+  .pricing-table .band-price{font-family:'Space Mono',monospace; font-weight:700; color:var(--yellow); font-size:1rem; text-align:right; white-space:nowrap;}
+  @media(max-width:700px){
+    .pricing-table thead{display:none;}
+    .pricing-table tbody tr{display:block; border-bottom:4px solid var(--line);}
+    .pricing-table tbody td{display:block;}
+    .pricing-table .band-price{text-align:left; margin-top:4px;}
+  }
+  .price-fineprint{font-size:.78rem; color:var(--gray-dim); font-family:'Space Mono',monospace; margin-bottom:56px;}
+
+  .guarantee-box{
+    background:var(--black); border:1px solid var(--orange); padding:30px 32px; display:flex; gap:20px; align-items:flex-start; margin-bottom:56px;
+  }
+  .guarantee-box .g-icon{
+    width:48px; height:48px; background:var(--orange); flex-shrink:0; display:flex; align-items:center; justify-content:center;
+  }
+  .guarantee-box h3{font-size:1.2rem; margin-bottom:8px; color:var(--white); text-transform:none;}
+  .guarantee-box p{font-size:.92rem; color:var(--gray);}
+
+  .scope-grid{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); margin-bottom:56px;}
+  @media(max-width:820px){.scope-grid{grid-template-columns:1fr;}}
+  .scope-col{background:var(--black); padding:28px 30px;}
+  .scope-col h3{font-size:1.05rem; margin-bottom:16px; display:flex; align-items:center; gap:8px; color:var(--white); text-transform:none;}
+  .scope-col ul{list-style:none;}
+  .scope-col li{font-size:.9rem; padding:7px 0; display:flex; gap:10px; align-items:flex-start; color:var(--gray);}
+  .scope-col.included li::before{content:'✓'; color:var(--yellow); font-weight:700;}
+  .scope-col.special li::before{content:'+'; color:var(--orange); font-weight:700;}
+
+  .service-mode-grid{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line);}
+  @media(max-width:700px){.service-mode-grid{grid-template-columns:1fr;}}
+  .mode-card{background:var(--black); padding:30px;}
+  .mode-card.highlight{background:var(--orange);}
+  .mode-card h3{font-size:1.4rem; margin:8px 0 10px; color:var(--white); text-transform:none;}
+  .mode-card.highlight h3{color:var(--black);}
+  .mode-card .mode-tag{font-family:'Space Mono',monospace; font-size:.75rem; text-transform:uppercase; letter-spacing:.05em; color:var(--yellow); font-weight:700;}
+  .mode-card.highlight .mode-tag{color:var(--black);}
+  .mode-card p{font-size:.92rem; color:var(--gray);}
+  .mode-card.highlight p{color:#3a1d00;}
+  .mode-card ul{list-style:none; margin-top:16px;}
+  .mode-card li{font-size:.9rem; padding:5px 0; color:var(--gray);}
+  .mode-card.highlight li{color:#3a1d00;}
+
+  /* WHY / TRUST STRIP */
+  .why{background:var(--black);}
+  .why-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:36px;}
+  @media(max-width:820px){.why-grid{grid-template-columns:1fr;}}
+  .why-item{display:flex; gap:16px; align-items:flex-start;}
+  .why-item .num{
+    font-family:'Big Shoulders',sans-serif; font-size:1rem; font-weight:800; color:var(--black);
+    background:var(--yellow); width:36px; height:36px; flex-shrink:0; display:flex; align-items:center; justify-content:center;
+  }
+  .why-item h3{font-size:1.15rem; margin-bottom:8px; color:var(--white); text-transform:none;}
+  .why-item p{font-size:.92rem; color:var(--gray);}
+
+  /* PROCESS — giant background numbers like the reference */
+  .process{background:var(--black); border-top:1px solid var(--line);}
+  .process-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:40px; position:relative;}
+  @media(max-width:820px){.process-grid{grid-template-columns:1fr;}}
+  .process-step{position:relative; padding-top:10px;}
+  .process-step .bg-num{
+    font-family:'Big Shoulders',sans-serif; font-size:8rem; font-weight:800; color:#161616;
+    position:absolute; top:-40px; left:-6px; z-index:0; line-height:1; user-select:none;
+  }
+  .process-step .fg-num{
+    font-family:'Space Mono',monospace; font-weight:700; color:var(--yellow); font-size:1rem; position:relative; z-index:1;
+  }
+  .process-step h3{font-size:1.6rem; margin:10px 0 10px; position:relative; z-index:1; color:var(--white); text-transform:none;}
+  .process-step p{font-size:.95rem; color:var(--gray); position:relative; z-index:1; max-width:280px;}
+
+  /* SERVICE AREA */
+  .area-layout{display:grid; grid-template-columns:1.1fr .9fr; gap:32px; align-items:center;}
+  @media(max-width:820px){ .area-layout{grid-template-columns:1fr;} }
+  .area-map-wrap{border:1px solid var(--line); overflow:hidden; aspect-ratio:4/3;}
+  .leaflet-container{background:var(--charcoal) !important; font-family:'Inter',sans-serif;}
+  .gis-tooltip{background:var(--yellow) !important; color:var(--black) !important; border:none !important; font-weight:700; font-size:.78rem; box-shadow:none !important;}
+  .gis-tooltip::before{display:none !important;}
+  .area-chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:8px;}
+  .chip{background:var(--panel); border:1px solid var(--line); color:var(--white); padding:9px 18px; font-weight:600; font-size:.88rem;}
+
+  /* TESTIMONIALS */
+  .testimonial-wrap{background:var(--charcoal); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .review-badge{
+    display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:6px;
+    font-family:'Big Shoulders',sans-serif; font-weight:700; text-transform:none;
+  }
+  .review-score{font-size:1.3rem; color:var(--white);}
+  .review-stars-inline{color:var(--yellow); letter-spacing:2px; font-size:.95rem;}
+  .review-count{font-family:'Space Mono',monospace; font-size:.82rem; color:var(--gray-dim); font-weight:400;}
+  .testimonial-track{max-width:680px; margin:0 auto; text-align:center; padding:20px; position:relative; min-height:240px;}
+  .testimonial{position:absolute; inset:0 20px; opacity:0; transform:translateY(10px); transition:opacity .5s ease, transform .5s ease; pointer-events:none;}
+  .testimonial.active{opacity:1; transform:translateY(0); position:relative; pointer-events:auto;}
+  .stars{color:var(--yellow); letter-spacing:3px; font-size:1.1rem; margin-bottom:12px;}
+  .testimonial p.quote{font-family:'Big Shoulders',sans-serif; font-weight:700; font-size:1.5rem; margin-bottom:22px; color:var(--white); text-transform:none; line-height:1.25;}
+  .who-row{display:flex; align-items:center; justify-content:center; gap:12px;}
+  .avatar{width:44px; height:44px; background:var(--orange); color:var(--black); display:flex; align-items:center; justify-content:center; font-family:'Big Shoulders',sans-serif; font-weight:800; font-size:1rem; flex-shrink:0;}
+  .who-name{font-family:'Space Mono',monospace; font-size:.85rem; font-weight:700; text-align:left; color:var(--white);}
+  .who-loc{font-size:.78rem; color:var(--gray-dim); text-align:left; display:flex; align-items:center; gap:6px;}
+  .verified{background:var(--yellow); color:var(--black); padding:1px 8px; font-size:.66rem; font-weight:800;}
+  .sample-note{font-size:.72rem; color:var(--gray-dim); margin-top:16px; font-family:'Space Mono',monospace;}
+  .testimonial-dots{display:flex; justify-content:center; gap:10px; margin-top:24px;}
+  .testimonial-dots button{width:10px; height:10px; border-radius:50%; border:2px solid var(--gray-dim); background:transparent; cursor:pointer; padding:0; transition:background .2s ease, border-color .2s ease;}
+  .testimonial-dots button.active{background:var(--yellow); border-color:var(--yellow);}
+
+  /* CTA BANNER */
+  .cta-section{background:var(--yellow);}
+  .cta-inner{padding:80px 24px; text-align:center; max-width:900px; margin:0 auto;}
+  .cta-inner h2{color:var(--black); font-size:clamp(2rem,4vw,3rem); margin-bottom:16px;}
+  .cta-inner p.mono-tag{color:#4a3900; font-size:.85rem; font-weight:700; font-family:'Space Mono',monospace; margin-bottom:30px; text-transform:uppercase; letter-spacing:.04em;}
+  .cta-btns{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+  .cta-btns .btn-primary{background:var(--black); color:var(--yellow);}
+  .cta-btns .btn-secondary{background:transparent; color:var(--black); border-color:var(--black);}
+
+  /* FOOTER */
+  footer{background:var(--black); padding:60px 0 28px; border-top:1px solid var(--line);}
+  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px; margin-bottom:40px;}
+  @media(max-width:700px){.footer-grid{grid-template-columns:1fr; gap:28px;}}
+  footer h4{font-family:'Big Shoulders',sans-serif; font-size:1.1rem; margin-bottom:14px; color:var(--orange); text-transform:uppercase;}
+  footer p, footer li{font-size:.9rem; color:var(--gray);}
+  footer ul{list-style:none;}
+  footer li{margin-bottom:8px;}
+  .footer-bottom{border-top:1px solid var(--line); padding-top:20px; font-size:.8rem; color:var(--gray-dim); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="clean-sweep-website.html">
+      <svg class="logo-mark" viewBox="0 0 100 100">
+        <polygon points="14,0 100,0 100,86 86,100 0,100 0,14" fill="#FF6A13"/>
+        <line x1="30" y1="35" x2="58" y2="63" stroke="#fff" stroke-width="6"/>
+        <line x1="58" y1="63" x2="72" y2="77" stroke="#fff" stroke-width="5"/>
+        <line x1="58" y1="63" x2="64" y2="80" stroke="#fff" stroke-width="5"/>
+        <line x1="58" y1="66" x2="80" y2="66" stroke="#fff" stroke-width="5"/>
+      </svg>
+      <span>CLEAN SWEEP</span>
+    </a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#why">Why Us</a>
+      <a href="#process">How It Works</a>
+      <a href="#area">Service Area</a>
+    </div>
+    <a href="quote.html" class="btn btn-primary btn-sm">Get Instant Quote</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-grid">
+    <span class="eyebrow">Chicago + Suburbs · Locally Owned</span>
+    <h1>We Clear It Out.<br><span class="accent">You're Done.</span></h1>
+    <p class="sub">Garage, basement, attic, and estate cleanouts — plus full junk &amp; waste removal. Send photos, get your price, then decide.</p>
+    <div class="hero-ctas">
+      <a href="quote.html" class="btn btn-primary">Get Your Instant Quote</a>
+      <a href="sms:+13125550134" class="btn btn-secondary">Text Us A Photo</a>
+    </div>
+    <p class="hero-note">(312) 555-0134 <span class="placeholder-flag">· placeholder</span> — call or text</p>
+  </div>
+</header>
+
+<div class="trust-bar">
+  <div class="trust-grid">
+    <div class="trust-stat"><span class="trust-num">100%</span><span class="trust-label">Satisfaction</span></div>
+    <div class="trust-stat"><span class="trust-num">5.0★</span><span class="trust-label">Star Rating</span></div>
+    <div class="trust-stat"><span class="trust-num">Same-Day</span><span class="trust-label">Service Available</span></div>
+    <div class="trust-stat"><span class="trust-num">$0</span><span class="trust-label">Hidden Fees</span></div>
+  </div>
+</div>
+<p class="trust-sample-note">sample stats — swap in your real numbers once you have them</p>
+
+<section class="section services" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">What We Haul</span>
+      <h2>No Job Too Big.<br>No Mess Too Bad.</h2>
+    </div>
+  </div>
+  <div class="services-grid">
+    <div class="s-card">
+      <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1635108198322-18c814f9b70f?fm=jpg&q=70&w=900&auto=format&fit=crop');"></div>
+      <div class="body">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 10L12 3l9 7" stroke="#0B0B0B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 9v10h14V9" stroke="#0B0B0B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Garage Cleanouts</h3>
+        <p>Full decluttering, sorting, and haul-away — get your garage back to parking a car in it.</p>
+        <div class="price-row"><span class="price">$175<span>starting at</span></span></div>
+      </div>
+    </div>
+    <div class="s-card">
+      <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1738236662730-b4ea66d35d0c?fm=jpg&q=70&w=900&auto=format&fit=crop');"></div>
+      <div class="body">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 7h16l-1.5 13a2 2 0 01-2 1.8H7.5a2 2 0 01-2-1.8L4 7z" stroke="#0B0B0B" stroke-width="2.4" stroke-linejoin="round"/></svg></div>
+        <h3>Junk &amp; Waste Removal</h3>
+        <p>Old furniture, appliances, and general household junk — gone in one visit.</p>
+        <div class="price-row"><span class="price">$75<span>starting at</span></span></div>
+      </div>
+    </div>
+    <div class="s-card">
+      <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1560843300-ce9370f96b56?fm=jpg&q=70&w=900&auto=format&fit=crop');"></div>
+      <div class="body">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v16H4z" stroke="#0B0B0B" stroke-width="2.4"/><path d="M4 12h16M12 4v16" stroke="#0B0B0B" stroke-width="2.4"/></svg></div>
+        <h3>Estate Cleanouts</h3>
+        <p>Compassionate, thorough clearing for moves, sales, or after a loss.</p>
+        <div class="price-row"><span class="price">$299<span>starting at</span></span></div>
+      </div>
+    </div>
+    <div class="s-card">
+      <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1561763439-fb89720fc359?fm=jpg&q=70&w=900&auto=format&fit=crop');"></div>
+      <div class="body">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="#0B0B0B" stroke-width="2.4"/><path d="M4 10h16" stroke="#0B0B0B" stroke-width="2.4"/></svg></div>
+        <h3>Storage Unit Cleanouts</h3>
+        <p>We clear the whole unit so you can stop paying rent on stuff you don't need.</p>
+        <div class="price-row"><span class="price">$175<span>starting at</span></span></div>
+      </div>
+    </div>
+    <div class="s-card">
+      <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1504222013707-cd1090517aed?fm=jpg&q=70&w=900&auto=format&fit=crop');"></div>
+      <div class="body">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3v10m0 0l-4-4m4 4l4-4" stroke="#0B0B0B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 15v4a2 2 0 002 2h12a2 2 0 002-2v-4" stroke="#0B0B0B" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+        <h3>Basement &amp; Attic</h3>
+        <p>The hard-to-reach spaces, cleared out safely and efficiently.</p>
+        <div class="price-row"><span class="price">$175<span>starting at</span></span></div>
+      </div>
+    </div>
+    <div class="s-card">
+      <div class="photo" style="background-image:url('https://images.unsplash.com/photo-1713730060332-2e478ce2e318?fm=jpg&q=70&w=900&auto=format&fit=crop');"></div>
+      <div class="body">
+        <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 20l3-9 5-6 5 6 3 9" stroke="#0B0B0B" stroke-width="2.4" stroke-linejoin="round"/><path d="M3 20h18" stroke="#0B0B0B" stroke-width="2.4" stroke-linecap="round"/></svg></div>
+        <h3>Yard &amp; Shed Cleanouts</h3>
+        <p>Outdoor debris, old equipment, and scrap — cleared and hauled.</p>
+        <div class="price-row"><span class="price">$99<span>starting at</span></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section pricing-section" id="pricing">
+  <div class="wrap">
+    <div class="pricing-intro">
+      <div>
+        <span class="tag" style="margin-bottom:14px;">Simple, Upfront Pricing</span>
+        <h2 style="font-size:clamp(2rem,4vw,3rem); margin-bottom:16px;">Know The Price Before We Arrive</h2>
+        <p style="color:var(--gray); font-size:1.02rem;">Pricing is based mainly on how much space your items take up in the truck. Send photos, get a real range back, and decide — before anyone's on your doorstep.</p>
+      </div>
+      <div class="diff-box">
+        <p class="them">Their way: book an appointment, get the final quote once someone's already at your house.</p>
+        <p class="us">Our way: send photos, understand the price, then decide whether to book.</p>
+      </div>
+    </div>
+
+    <div class="steps-row">
+      <div class="step-card"><div class="step-num">1</div><h3>Send Photos</h3><p>Show us what needs to go — takes about 2 minutes.</p></div>
+      <div class="step-card"><div class="step-num">2</div><h3>Receive Your Quote</h3><p>A clear estimated range or fixed price, before we arrive.</p></div>
+      <div class="step-card"><div class="step-num">3</div><h3>Approve The Price</h3><p>We confirm everything with you before any work begins.</p></div>
+      <div class="step-card"><div class="step-num">4</div><h3>We Remove Everything</h3><p>Labor, loading, transport, disposal &amp; cleanup — all included.</p></div>
+    </div>
+
+    <table class="pricing-table">
+      <thead><tr><th>Load Size</th><th>Typical Example</th><th style="text-align:right;">Price (Full-Service)</th></tr></thead>
+      <tbody>
+        <tr><td class="band-name">Single Item</td><td class="band-example">Mattress, appliance, or sofa</td><td class="band-price">From $75</td></tr>
+        <tr><td class="band-name">Small Load</td><td class="band-example">Several items or a small closet</td><td class="band-price">$99–$149</td></tr>
+        <tr><td class="band-name">Quarter Truck</td><td class="band-example">Small room or light garage cleanup</td><td class="band-price">$175–$249</td></tr>
+        <tr><td class="band-name">Half Truck</td><td class="band-example">Apartment or larger garage cleanup</td><td class="band-price">$299–$399</td></tr>
+        <tr><td class="band-name">Full Truck</td><td class="band-example">Large cleanout, multiple rooms</td><td class="band-price">$449–$599</td></tr>
+      </tbody>
+    </table>
+    <p class="price-fineprint">Sample pricing shown for illustration — confirm real rates before publishing. Curbside pickup runs lower than full-service; see below.</p>
+
+    <div class="guarantee-box">
+      <div class="g-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v6c0 4.4-3 8.4-7 9-4-.6-7-4.6-7-9V6l7-3z" stroke="#0B0B0B" stroke-width="2.2" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="#0B0B0B" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <div><h3>Our Price Guarantee</h3><p>Your quote won't increase unless additional items are added or what's there differs materially from your photos. If your items take up less space than estimated, we reduce the price — you'll never pay more than your approved quote unless the scope changes.</p></div>
+    </div>
+
+    <div class="scope-grid">
+      <div class="scope-col included"><h3>Every Quote Includes</h3><ul><li>Labor and lifting</li><li>Loading</li><li>Transportation</li><li>Disposal</li><li>Basic cleanup / sweep-up</li></ul></div>
+      <div class="scope-col special"><h3>May Cost More (Flagged First)</h3><ul><li>Concrete, soil, or construction debris</li><li>Refrigerators or refrigerant-containing items</li><li>Tires</li><li>Paint or hazardous materials</li><li>Extremely heavy items</li><li>Long-distance carrying or difficult access</li></ul></div>
+    </div>
+
+    <div class="service-mode-grid">
+      <div class="mode-card"><span class="mode-tag">Lower Cost</span><h3>Curbside Pickup</h3><p>You place everything outside — we handle the rest.</p><ul><li>Lower price</li><li>Faster collection</li><li>Fixed price available straight from photos</li></ul></div>
+      <div class="mode-card highlight"><span class="mode-tag">Most Popular</span><h3>Full-Service Removal</h3><p>Our team removes everything from inside your home.</p><ul><li>Labor included</li><li>Stairs &amp; access confirmed in advance</li><li>Sweep-up included</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="section why" id="why">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Why Clean Sweep</span>
+      <h2>Straightforward. Eco-First.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item"><div class="num">1</div><div><h3>Free, No-Pressure Quotes</h3><p>We look at the job and give you a real number — no surprise fees added on pickup day.</p></div></div>
+      <div class="why-item"><div class="num">2</div><div><h3>Donation &amp; Recycling First</h3><p>Anything still useful gets donated or recycled before it ever sees a landfill.</p></div></div>
+      <div class="why-item"><div class="num">3</div><div><h3>Locally Owned Crew</h3><p>Chicago-based, showing up on time, and treating your home like it's ours to respect.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section process" id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">The Process</span>
+      <h2>Three Steps. Zero Stress.</h2>
+    </div>
+    <div class="process-grid">
+      <div class="process-step"><span class="bg-num">01</span><span class="fg-num">01</span><h3>Send Your Sweep</h3><p>Send a few photos or describe the space — we'll get you a free quote fast.</p></div>
+      <div class="process-step"><span class="bg-num">02</span><span class="fg-num">02</span><h3>We Haul It Away</h3><p>Our crew shows up, does the heavy lifting, and sorts for donation or recycling.</p></div>
+      <div class="process-step"><span class="bg-num">03</span><span class="fg-num">03</span><h3>Space, Restored</h3><p>You walk back into a clean, usable space — same day, most jobs.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="area" style="background:var(--charcoal); border-top:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head" style="margin-bottom:24px;">
+      <span class="tag">Where We Work</span>
+      <h2>Chicago &amp; The Suburbs</h2>
+    </div>
+    <div class="area-layout">
+      <div class="area-map-wrap">
+        <div id="gisMap" style="width:100%; height:100%;"></div>
+      </div>
+      <div class="area-list">
+        <div class="area-chips">
+          <span class="chip">Chicago</span><span class="chip">Evanston</span><span class="chip">Oak Park</span>
+          <span class="chip">Naperville</span><span class="chip">Schaumburg</span><span class="chip">Skokie</span>
+          <span class="chip">Cicero</span><span class="chip">+ surrounding areas</span>
+        </div>
+        <p style="margin-top:16px; font-size:.85rem; color:var(--gray-dim);" class="mono">— sample coverage radius &amp; suburb pins, swap in your real service area</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function(){
+  if(typeof L === 'undefined') return;
+  var center = [41.8781, -87.6298];
+  var map = L.map('gisMap', {scrollWheelZoom:false}).setView(center, 9);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap &copy; CARTO',
+    maxZoom: 18
+  }).addTo(map);
+
+  L.circle(center, {
+    radius: 32000,
+    color: '#FF6A13',
+    weight: 2,
+    fillColor: '#FF6A13',
+    fillOpacity: 0.12
+  }).addTo(map);
+
+  var suburbs = [
+    {name:'Chicago', coords:[41.8781,-87.6298]},
+    {name:'Evanston', coords:[42.0451,-87.6877]},
+    {name:'Oak Park', coords:[41.8850,-87.7845]},
+    {name:'Naperville', coords:[41.7508,-88.1535]},
+    {name:'Schaumburg', coords:[42.0334,-88.0834]},
+    {name:'Skokie', coords:[42.0324,-87.7416]},
+    {name:'Cicero', coords:[41.8456,-87.7539]}
+  ];
+
+  var pinIcon = L.divIcon({
+    className: '',
+    html: '<div style="width:14px;height:14px;background:#FFD400;border:2px solid #0B0B0B;transform:rotate(45deg);"></div>',
+    iconSize: [14,14]
+  });
+
+  suburbs.forEach(function(s){
+    L.marker(s.coords, {icon: pinIcon}).addTo(map).bindTooltip(s.name, {direction:'top', className:'gis-tooltip'});
+  });
+})();
+</script>
+
+<div class="testimonial-wrap">
+  <div class="wrap section" style="padding:80px 0;">
+    <div class="section-head" style="margin:0 auto 24px; text-align:center; max-width:600px;">
+      <span class="tag" style="justify-content:center;">Reviews</span>
+      <h2>What Our Customers Say</h2>
+    </div>
+    <div class="review-badge">
+      <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20.4H24v7.2h11.3c-1.6 4.6-6 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 8 3l5.1-5.1C33.6 6.1 29.1 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 15.7 18.9 12.9 24 12.9c3.1 0 5.8 1.1 8 3l5.1-5.1C33.6 6.1 29.1 4 24 4 16.3 4 9.6 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5 0 9.5-1.9 12.9-5.1l-6-5c-2 1.4-4.4 2.1-6.9 2.1-5.2 0-9.6-3.3-11.3-8l-6.6 5.1C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20.4H24v7.2h11.3c-.8 2.2-2.2 4.1-4 5.5l6 5C40.9 34.9 44 30.1 44 24c0-1.3-.1-2.7-.4-3.5z"/></svg>
+      <span class="review-score">5.0</span>
+      <span class="review-stars-inline">★★★★★</span>
+      <span class="review-count">(127 reviews)</span>
+    </div>
+    <p class="mono" style="text-align:center; font-size:.72rem; color:var(--gray-dim); margin-bottom:36px;">sample rating — connect real Google reviews once your profile is live</p>
+    <div class="testimonial-track" id="testimonialTrack">
+      <div class="testimonial active">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"They cleared our whole garage in an afternoon and even donated the stuff we couldn't use. Easiest call we made all year."</p>
+        <div class="who-row"><span class="avatar">MS</span><div><p class="who-name">Sample Customer</p><p class="who-loc">Oak Park <span class="verified">✓ Verified</span></p></div></div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"Showed up on time, worked fast, and left the space cleaner than I expected. Would book again in a heartbeat."</p>
+        <div class="who-row"><span class="avatar">JT</span><div><p class="who-name">Sample Customer</p><p class="who-loc">Evanston <span class="verified">✓ Verified</span></p></div></div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"We had a whole basement of my mom's things after she moved. They handled it with so much care — donated most of it too."</p>
+        <div class="who-row"><span class="avatar">RP</span><div><p class="who-name">Sample Customer</p><p class="who-loc">Naperville <span class="verified">✓ Verified</span></p></div></div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <p class="quote">"Quote was exactly what they charged, no surprise fees. That alone makes them worth calling first."</p>
+        <div class="who-row"><span class="avatar">DK</span><div><p class="who-name">Sample Customer</p><p class="who-loc">Skokie <span class="verified">✓ Verified</span></p></div></div>
+      </div>
+    </div>
+    <div class="testimonial-dots" id="testimonialDots"></div>
+    <p class="sample-note" style="text-align:center;">placeholder quotes — swap in real reviews once you have them</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var slides = document.querySelectorAll('#testimonialTrack .testimonial');
+  var dotsWrap = document.getElementById('testimonialDots');
+  var current = 0; var timer;
+  slides.forEach(function(_, i){
+    var dot = document.createElement('button');
+    if(i === 0) dot.classList.add('active');
+    dot.setAttribute('aria-label', 'Show testimonial ' + (i+1));
+    dot.addEventListener('click', function(){ goTo(i); resetTimer(); });
+    dotsWrap.appendChild(dot);
+  });
+  var dots = dotsWrap.querySelectorAll('button');
+  function goTo(index){ slides[current].classList.remove('active'); dots[current].classList.remove('active'); current = index; slides[current].classList.add('active'); dots[current].classList.add('active'); }
+  function next(){ goTo((current + 1) % slides.length); }
+  function resetTimer(){ clearInterval(timer); timer = setInterval(next, 5000); }
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){ resetTimer(); }
+})();
+</script>
+
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2>Ready To See Your Garage Floor Again?</h2>
+    <p class="mono-tag">No hourly surprises. No hidden disposal charges. No pressure to proceed.</p>
+    <div class="cta-btns">
+      <a href="quote.html" class="btn btn-primary">Get Instant Quote</a>
+      <a href="sms:+13125550134" class="btn btn-secondary">Text Us A Photo</a>
+      <a href="tel:+13125550134" class="btn btn-secondary">Call (312) 555-0134</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>Clean Sweep Waste Removal</h4>
+        <p>Garage cleanouts, junk removal, and waste hauling for Chicago &amp; the suburbs. Free quotes, eco-friendly disposal.</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>(312) 555-0134 <span class="placeholder-flag mono">(placeholder)</span></li>
+          <li>hello@cleansweepchicago.com <span class="placeholder-flag mono">(placeholder)</span></li>
+          <li>Chicago, IL</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Follow Along</h4>
+        <ul>
+          <li><a href="#">Facebook</a> <span class="placeholder-flag mono">(link TBD)</span></li>
+          <li><a href="#">Instagram</a> <span class="placeholder-flag mono">(link TBD)</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Clean Sweep Waste Removal. All rights reserved.</span>
+      <span>Licensed &amp; insured <span class="placeholder-flag">(confirm before publishing)</span></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
